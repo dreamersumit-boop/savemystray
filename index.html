@@ -1570,6 +1570,43 @@ body[data-view="cases"] #app .btn.ghost:not(:hover),body[data-view="cases"] #app
 @media (min-width:992px) and (max-width:1180px){.hero-visual{max-width:400px}}
 @media (min-width:992px) and (max-width:1180px){.hero-visual .hf-amt{left:-6%}}
 
+/* ===== round 9: phones only ===== */
+.hf-vb,.hf-pc{display:none}
+@media (max-width:640px){
+ /* 1 menu */
+ .sheet{gap:8px}
+ .sheet a.item{font:600 1rem/1.2 var(--fb);padding:13px 16px;background:var(--l1);color:var(--l1-ink);border:1px solid var(--line)!important;border-radius:var(--r-btn);box-shadow:none}
+ .sheet a.item:active{border-color:var(--brand)!important}
+ /* 2 amount card: just % funded, lower, near the case card */
+ .hero-visual .hf-amt{top:auto!important;bottom:calc(3.6rem + 50px)!important;left:-2%!important;width:auto!important;padding:.55rem .8rem;gap:0}
+ .hero-visual .hf-amt>*:not(.hf-pc){display:none!important}
+ .hero-visual .hf-amt .hf-pc{display:block;font:700 .95rem/1.1 var(--fd);color:var(--sec-t);white-space:nowrap}
+ /* 3 verified card becomes the crest badge */
+ .hero-visual .hf-v{display:none!important}
+ .hf-vb{display:block;position:absolute;z-index:4;right:15%;top:15%}
+ .hf-vb .vb{position:relative}
+ /* 4 home ABC: heading and text, then map, then ward card */
+ .abc2{display:flex!important;flex-direction:column;gap:0}
+ .abc2-side{display:contents}
+ .abc2-side .kicker{order:1}.abc2-side h2{order:2}.abc2-side .lead{order:3}.abc2-side .chips{order:4;margin-bottom:1.2rem}
+ .abc2 .mapbox{order:5}
+ .abc2-side .wd{order:6;margin-top:1.2rem}
+ .abc2-side .note{order:7}
+ /* 5 ABC page stat box 2x2 */
+ .statrow{grid-auto-flow:row!important;grid-template-columns:repeat(2,minmax(0,1fr))!important}
+ .statrow>div{min-width:0}
+ .statrow b{font-size:1.35rem}
+ /* 6 home metrics: a line before every metric */
+ .impact-grid>div,.impact-grid>div:first-child{border-left:1px solid var(--dk-line)!important}
+ /* 7 hero paragraph smaller */
+ .hero-copy .hero-lead{font-size:.98rem;line-height:1.55}
+}
+@media (max-width:640px){
+ .abc2-side .lead{text-align:center;margin:.6rem 0 1rem}
+ .abc2-side .kicker,.abc2-side h2{text-align:center;align-self:center}
+ .statrow span{font-size:.8rem}
+}
+
 </style>
 </head>
 <body>
@@ -1932,13 +1969,13 @@ V.home = () => {
       <div class="hero-head"><a class="hero-logo" href="#/cases" aria-label="Save My Stray, see open cases"><svg viewBox="0 0 728 698" aria-hidden="true"><use class="hl-front" href="#smsPaw" width="728" height="698"/></svg></a>
       <div class="hero-ht"><p class="hero-kicker"><span class="kk">${ico('case')}</span><span><b class="num">${open}</b> open cases right now</span></p>
       <h1 class="hero-title" id="heroT"><span class="ht-1">Help microfund a</span><br><span class="ht-2">stray's <span class="ht-w">treatment.<svg class="ht-u" viewBox="0 0 300 20" preserveAspectRatio="none" aria-hidden="true"><path d="M4 13 C 70 6, 170 4, 296 9"/></svg><svg class="ht-s" viewBox="0 0 40 40" aria-hidden="true"><path d="M14 22 L19 6"/><path d="M22 26 L35 17"/><path d="M24 33 L38 33"/></svg></span></span></h1></div></div>
-      <p class="hero-lead">Registered rescue organisations post each animal's diagnosis, the vet's estimate and the bills. You microfund any amount from <span class="num">₹100</span>, and it goes straight to the organisation.</p>
+      <p class="hero-lead">Registered rescue organisations post each animal's diagnosis, the vet's estimate and the bills. You microfund any amount from <span class="num">₹100</span>, and it <span class="hl-goes">goes</span> straight to the organisation.</p>
       <div class="hero-actions"><a class="btn pri lg" href="#/cases">${ico('give')} Microfund a rescue</a><a class="btn ghost lg" href="#/how">How it works</a></div>
     </div>
     <div class="hero-visual" id="slides" aria-label="Featured cases" aria-live="polite">
       <div class="hero-blob" aria-hidden="true"></div>
       <a class="hero-photo" id="hfPhoto" href="#/case/${slides[0].id}">${slides.map((c, i) => `<img src="${pic(c.photo)}" alt="${esc(c.name)}, ${c.sp.toLowerCase()} in ${esc(c.city)}" class="${i === 0 ? 'on' : ''}">`).join('')}</a>
-      <div class="hf hf-v float1" id="hfV"></div>
+      <div class="hf hf-v float1" id="hfV"></div><span class="hf-vb">${vbadge(true, 'Verified case')}</span>
       <div class="hf hf-amt float2" id="hfA"></div>
       <a class="hf hf-meet float3" id="hfM" href="#/case/${slides[0].id}"></a>
       <div class="hero-dots" id="sdots">${slides.map((c, i) => `<button class="${i === 0 ? 'on' : ''}" data-i="${i}" aria-label="Show ${esc(c.name)}"></button>`).join('')}</div>
@@ -2037,7 +2074,10 @@ function heroBalance(slides) {
     // amount card: drop it below the body text or buttons it would touch
     const vb = vis.getBoundingClientRect(), pr = ph.getBoundingClientRect();
     let r = am.getBoundingClientRect(); let top = r.top;
-    const obs = [$('.hero-lead'), ...$$('.hero-actions .btn')].filter(Boolean).map((e) => e.getBoundingClientRect());
+    const gw = $('.hl-goes');
+    if (innerWidth >= 1181 && gw) { const gb = gw.getBoundingClientRect().bottom; top = (gb + pr.bottom) / 2 - r.height / 2; }
+    const rg = document.createRange(), ldE = $('.hero-lead'); if (ldE) rg.selectNodeContents(ldE);
+    const obs = [...(ldE ? rg.getClientRects() : []), ...$$('.hero-actions .btn').map((e) => e.getBoundingClientRect())];
     for (let n = 0; n < 4; n++) for (const o of obs) { if (r.left < o.right + 12 && top < o.bottom + 16 && top + r.height > o.top - 16) top = o.bottom + 18; }
     top = Math.min(top, pr.bottom - r.height - 12);
     am.style.top = Math.round(top - vb.top) + 'px';
@@ -2050,7 +2090,7 @@ V.home.after = () => {
   const fill = (c) => {
     const s = state(c), o = org(c.org), fl = flags(c)[0];
     $('#hfV').innerHTML = `<span class="hf-ic">${CREST}</span><span><b>Verified case</b><small>${esc(o.name)}</small></span>`;
-    $('#hfA').innerHTML = `<span class="hf-row"><b class="num">${inr(c.raised)}</b><span class="hf-p num">${pct(c)}%</span></span><small class="num">raised of ${inr(c.budget)}</small><span class="bar ${s === 'done' ? 'full' : ''}"><i style="width:${pct(c)}%"></i></span>`;
+    $('#hfA').innerHTML = `<span class="hf-row"><b class="num">${inr(c.raised)}</b><span class="hf-p num">${pct(c)}%</span></span><small class="num">raised of ${inr(c.budget)}</small><span class="bar ${s === 'done' ? 'full' : ''}"><i style="width:${pct(c)}%"></i></span><span class="hf-pc num">${pct(c)}% funded</span>`;
     const m = $('#hfM'); m.href = `#/case/${c.id}`; $('#hfPhoto').href = `#/case/${c.id}`;
     m.innerHTML = `${fl ? `<span class="flag f-${fl[0]} hf-flag">${fl[1]}</span>` : ''}<img src="${pic(c.photo)}" alt=""><span class="hf-tx"><b>${esc(c.name)}</b><small>${esc(c.age)} · ${esc(c.city)}</small><span class="hf-dx">${esc(c.dx.split('.')[0])}</span></span><span class="hf-go">${s === 'done' ? 'See updates' : 'Microfund'} ${arrow}</span>`;
     $$('#slides .hf').forEach((x) => { x.classList.remove('swap'); void x.offsetWidth; x.classList.add('swap'); });
