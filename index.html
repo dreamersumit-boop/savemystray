@@ -1668,6 +1668,10 @@ html:not([data-grid="off"]) .contact-sec{background-image:var(--dots);background
 .ht-t .ht-s{left:58%;right:auto;top:-.3em;width:.5em;height:.5em}
 .ht-t .ht-s{left:52%;top:-.17em}
 @media (max-width:380px){.ht-t .ht-s{display:block}}
+/* round 14: ABC coverage bands, red / amber / green */
+html[data-theme="blue"]{--b0:#DE7468;--b1:#EDB458;--b2:#5FAE88;--bt0:#041734;--bt1:#041734;--bt2:#041734}
+:root{--b0:#DE7468;--b1:#EDB458;--b2:#5FAE88;--bt0:#041734;--bt1:#041734;--bt2:#041734}
+.legend span{white-space:nowrap}
 
 </style>
 </head>
@@ -1957,11 +1961,11 @@ function billsHtml(c, limit = 3) {
 
 /* ward map */
 const ABC = { 2: { t: 412, s: 356, v: 371, cats: 58, org: 'o0' }, 3: { t: 286, s: 121, v: 150, cats: 41, org: 'o0' }, 4: { t: 338, s: 62, v: 88, cats: 47, org: null }, 10: { t: 510, s: 349, v: 362, cats: 73, org: 'o0' }, 11: { t: 264, s: 198, v: 209, cats: 39, org: 'o0' }, 12: { t: 375, s: 221, v: 240, cats: 52, org: 'o0' }, 13: { t: 198, s: 44, v: 61, cats: 22, org: null } };
-const BANDS = ['var(--b0)', 'var(--b1)', 'var(--b2)', 'var(--b3)'];
-const BTXT = ['var(--bt0)', 'var(--bt1)', 'var(--bt2)', 'var(--bt3)'];
+const BANDS = ['var(--b0)', 'var(--b1)', 'var(--b2)'];
+const BTXT = ['var(--bt0)', 'var(--bt1)', 'var(--bt2)'];
 const wp = (w) => Math.round((ABC[w].s / ABC[w].t) * 100);
-const band = (v) => (v >= 80 ? 3 : v >= 60 ? 2 : v >= 30 ? 1 : 0);
-function ring(v, col) { const r = 74, c = 2 * Math.PI * r; return `<svg viewBox="0 0 176 176" width="176" height="176" aria-hidden="true"><circle cx="88" cy="88" r="${r}" fill="none" style="stroke:var(--bar-t)" stroke-width="14"/><circle cx="88" cy="88" r="${r}" fill="none" style="stroke:var(--brand)" stroke-width="14" stroke-linecap="round" stroke-dasharray="${(c * v) / 100} ${c}" transform="rotate(-90 88 88)"/></svg>`; }
+const band = (v) => (v >= 70 ? 2 : v >= 40 ? 1 : 0);
+function ring(v, col) { const r = 74, c = 2 * Math.PI * r; return `<svg viewBox="0 0 176 176" width="176" height="176" aria-hidden="true"><circle cx="88" cy="88" r="${r}" fill="none" style="stroke:var(--bar-t)" stroke-width="14"/><circle cx="88" cy="88" r="${r}" fill="none" style="stroke:${col}" stroke-width="14" stroke-linecap="round" stroke-dasharray="${(c * v) / 100} ${c}" transform="rotate(-90 88 88)"/></svg>`; }
 function wardDetail(w) {
   const d = ABC[w], v = wp(w), col = BANDS[band(v)], ward = WARDS.wards.find((x) => x.code == w);
   const o = d.org ? org(d.org) : null;
@@ -1981,7 +1985,7 @@ function wardMap(host, panel) {
   };
   draw();
 }
-const legend = `<div class="legend"><span><i style="background:${BANDS[0]}"></i>Under 30%</span><span><i style="background:${BANDS[1]}"></i>30 to 60%</span><span><i style="background:${BANDS[2]}"></i>60 to 80%</span><span><i style="background:${BANDS[3]}"></i>80% and above</span></div>`;
+const legend = `<div class="legend"><span><i style="background:${BANDS[0]}"></i>Under 40%</span><span><i style="background:${BANDS[1]}"></i>40 to 69%</span><span><i style="background:${BANDS[2]}"></i>70% and above</span></div>`;
 const sampleNote = `<p class="note"><b>This is a sample of how the ABC map could look,</b> with placeholder ward shapes for Faridabad. Real ward boundaries and more cities will follow as ABC partners come on board.</p>`;
 
 function partnerCard(o) {
@@ -2039,7 +2043,7 @@ V.home = () => {
       <div class="hero-ht"><p class="hero-kicker"><span class="kk">${ico('case')}</span><span><b class="num">${open}</b> open cases right now</span></p>
       <h1 class="hero-title" id="heroT"><span class="ht-1">Help microfund a</span><br><span class="ht-2">stray's <span class="ht-w">treatmen<span class="ht-t">t<svg class="ht-s" viewBox="0 0 40 40" aria-hidden="true"><path d="M14 22 L19 6"/><path d="M22 26 L35 17"/><path d="M24 33 L38 33"/></svg></span>.<svg class="ht-u" viewBox="0 0 300 20" preserveAspectRatio="none" aria-hidden="true"><path d="M4 13 C 70 6, 170 4, 296 9"/></svg></span></span></h1></div></div>
       <p class="hero-lead">Registered rescue organisations post each animal's diagnosis, the vet's estimate and the bills. You microfund any amount from <span class="num">₹100</span>, and it <span class="hl-goes">goes</span> straight to the organisation.</p>
-      <div class="hero-actions"><a class="btn pri lg" href="#/cases">${ico('give')} Microfund a rescue</a><a class="btn ghost lg" href="#/how">How it works</a></div>
+      <div class="hero-actions"><a class="btn pri lg" href="#/cases">${ico('give')} Microfund a rescue</a><a class="btn ghost lg" href="#/abc">ABC programme</a></div>
     </div>
     <div class="hero-visual" id="slides" aria-label="Featured cases" aria-live="polite">
       <div class="hero-blob" aria-hidden="true"></div>
@@ -2418,7 +2422,7 @@ V.abc = () => {
   const W = Object.values(ABC), T = W.reduce((s, d) => s + d.t, 0), St = W.reduce((s, d) => s + d.s, 0), Va = W.reduce((s, d) => s + d.v, 0);
   const rows = Object.keys(ABC).map(Number).sort((a, b) => wp(b) - wp(a));
   return `<section class="sec" style="padding-top:44px"><div class="wrap">
-    <div class="sh"><div><span class="eyebrow">ABC programme</span><h1 class="page" style="margin-top:12px">Animal Birth Control, ward by ward</h1><p>Sterilisation and anti-rabies vaccination work done by our partners, mapped at ward level. The usual target is 80% of a ward's street dogs.</p></div>
+    <div class="sh"><div><span class="eyebrow">ABC programme</span><h1 class="page" style="margin-top:12px">Animal Birth Control, ward by ward</h1><p>Sterilisation and anti-rabies vaccination work done by our partners, mapped at ward level. The government target is at least 70% of a ward's street dogs.</p></div>
       <div class="chips"><span class="chip on">Faridabad</span><span class="chip off">More cities soon</span></div></div>
     <div class="statrow"><div><b class="num">${T.toLocaleString('en-IN')}</b><span>Estimated street dogs</span></div><div><b class="num">${St.toLocaleString('en-IN')}</b><span>Spayed or neutered</span></div><div><b class="num">${Math.round((St / T) * 100)}%</b><span>Overall coverage</span></div><div><b class="num">${Va.toLocaleString('en-IN')}</b><span>Rabies vaccinated</span></div></div>
     <div class="abc"><div><div class="mapbox" id="mapAbc"></div>${legend}${sampleNote}</div><div class="wd" id="wdAbc"></div></div>
