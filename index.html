@@ -1672,6 +1672,42 @@ html:not([data-grid="off"]) .contact-sec{background-image:var(--dots);background
 html[data-theme="blue"]{--b0:#DE7468;--b1:#EDB458;--b2:#5FAE88;--bt0:#041734;--bt1:#041734;--bt2:#041734}
 :root{--b0:#DE7468;--b1:#EDB458;--b2:#5FAE88;--bt0:#041734;--bt1:#041734;--bt2:#041734}
 .legend span{white-space:nowrap}
+/* round 15: phones */
+@media (max-width:640px){
+ .hero-copy{margin-left:auto;margin-right:auto}
+ .hero-copy .hero-actions{display:flex;flex-wrap:wrap;gap:.5rem}
+ .hero-copy .hero-actions .btn{flex:1 1 auto;justify-content:center;padding:.72rem .8rem;font-size:.86rem;gap:.4rem;min-width:0}
+ .hero-copy .hero-actions .btn .ico{width:1rem;height:1rem}
+}
+@media (max-width:380px){.hero-copy .hero-actions .btn{font-size:.8rem;padding:.7rem .6rem;gap:.35rem}.hero-copy .hero-actions{gap:.4rem}}
+/* round 16 */
+#app aside .btn.ghost{background:var(--l2);color:var(--l2-ink);border:1px solid var(--l2-line)}
+#app aside .btn.ghost:hover{background:var(--sec-soft,var(--l2));border-color:var(--brand);color:var(--brand)}
+.final.slim .fslim{padding-left:0!important;padding-right:0!important;margin-left:auto!important;margin-right:auto!important;justify-content:center!important;text-align:center!important}
+/* round 17: thinner underline, bolder strokes */
+.ht-u path{stroke-width:4}
+.ht-t .ht-s{width:.62em;height:.62em;top:-.29em}
+.ht-s path{stroke-width:3.8}
+@media (max-width:640px){.ht-u path{stroke-width:3}.ht-s path{stroke-width:5.2}}
+.ht-s path{vector-effect:non-scaling-stroke;stroke-width:3.5px}
+@media (max-width:1180px){.ht-s path{stroke-width:3px}}
+@media (max-width:640px){.ht-s path{stroke-width:2.5px}.ht-t .ht-s{width:.72em;height:.72em;top:-.39em}}
+.ht-t .ht-s{max-width:none;max-height:none}
+.ht-t .ht-s{width:.42em;height:.42em;top:-.24em}
+@media (max-width:640px){.ht-t .ht-s{width:.5em;height:.5em;top:-.3em}}
+/* round 18: strokes start just off the t crossbar's top right */
+.ht-t .ht-s{left:calc(97% - .055em);top:-.108em}
+@media (max-width:640px){.ht-t .ht-s{left:calc(94% - .075em);top:-.2em}}
+/* round 19 */
+/* home ABC: hint and button */
+.mapbox{position:relative}
+.map-hint{position:absolute;z-index:2;left:12px;top:12px;font-size:.78rem;font-weight:600;color:var(--l2-ink);background:var(--l2);border:1px solid var(--l2-line);border-radius:var(--r-sm);padding:.3rem .6rem;pointer-events:none}
+.map-hint .mh-t{display:none}
+@media (hover:none){.map-hint .mh-c{display:none}.map-hint .mh-t{display:inline}}
+.abc-more{margin-top:1.2rem;align-self:flex-start}
+@media (max-width:640px){.abc2-side .abc-more{order:8;align-self:stretch;justify-content:center}}
+
+
 
 </style>
 </head>
@@ -1702,7 +1738,7 @@ html[data-theme="blue"]{--b0:#DE7468;--b1:#EDB458;--b2:#5FAE88;--bt0:#041734;--b
   <div class="f-grid">
     <div class="f-brand"><a class="f-logo" href="#/" aria-label="Save My Stray, home"><svg viewBox="0 0 728 698" aria-hidden="true"><use href="#smsPaw"/></svg></a><div class="f-txt"><p>Registered rescue organisations post each animal's diagnosis, the vet's estimate and the bills. You microfund any amount from ₹100, and it goes straight to the organisation.</p><a class="f-mail" href="mailto:hello@savemystray.in">hello@savemystray.in</a></div></div>
     <div class="f-col"><h5>Microfund</h5><ul><li><a href="#/cases">Open cases</a></li><li><a href="#/how">How it works</a></li><li><a href="#/abc">ABC programme</a></li></ul></div>
-    <div class="f-col"><h5>Organisations</h5><ul><li><a href="#/register">Register</a></li><li><a href="#/partners">Partners</a></li><li><a href="https://wa.me/918013560733?text=Hi%20Sumit%2C%20I%20found%20Save%20My%20Stray%20and%20would%20like%20to%20know%20more%20about%20listing%20a%20rescue%20organisation." target="_blank" rel="noopener">Contact</a></li></ul></div>
+    <div class="f-col"><h5>Organisations</h5><ul><li><a href="https://wa.me/918013560733?text=Hi%20Sumit%2C%20I%20found%20Save%20My%20Stray%20and%20would%20like%20to%20know%20more%20about%20listing%20a%20rescue%20organisation." target="_blank" rel="noopener">Register</a></li><li><a href="#/partners">Partners</a></li><li><a href="https://wa.me/918013560733?text=Hi%20Sumit%2C%20I%20found%20Save%20My%20Stray%20and%20would%20like%20to%20know%20more%20about%20listing%20a%20rescue%20organisation." target="_blank" rel="noopener">Contact</a></li></ul></div>
   </div>
   <div class="f-bot"><span>© 2026 Save My Stray · Photos from Unsplash</span><span class="credit">Built by <a href="https://www.babelfoundry.com" target="_blank" rel="noopener">BabelFoundry</a> · Powered by <b>EonKeep</b></span></div>
 </div></footer>
@@ -2042,7 +2078,7 @@ V.home = () => {
       <div class="hero-head"><a class="hero-logo" href="#/cases" aria-label="Save My Stray, see open cases"><svg viewBox="0 0 728 698" aria-hidden="true"><use class="hl-front" href="#smsPaw" width="728" height="698"/></svg></a>
       <div class="hero-ht"><p class="hero-kicker"><span class="kk">${ico('case')}</span><span><b class="num">${open}</b> open cases right now</span></p>
       <h1 class="hero-title" id="heroT"><span class="ht-1">Help microfund a</span><br><span class="ht-2">stray's <span class="ht-w">treatmen<span class="ht-t">t<svg class="ht-s" viewBox="0 0 40 40" aria-hidden="true"><path d="M14 22 L19 6"/><path d="M22 26 L35 17"/><path d="M24 33 L38 33"/></svg></span>.<svg class="ht-u" viewBox="0 0 300 20" preserveAspectRatio="none" aria-hidden="true"><path d="M4 13 C 70 6, 170 4, 296 9"/></svg></span></span></h1></div></div>
-      <p class="hero-lead">Registered rescue organisations post each animal's diagnosis, the vet's estimate and the bills. You microfund any amount from <span class="num">₹100</span>, and it <span class="hl-goes">goes</span> straight to the organisation.</p>
+      <p class="hero-lead">Verified cases from rescue organisations with diagnosis, estimates, bills and updates. Microfund from <span class="num">₹100</span>, received directly by the org.</p>
       <div class="hero-actions"><a class="btn pri lg" href="#/cases">${ico('give')} Microfund a rescue</a><a class="btn ghost lg" href="#/abc">ABC programme</a></div>
     </div>
     <div class="hero-visual" id="slides" aria-label="Featured cases" aria-live="polite">
@@ -2058,7 +2094,7 @@ V.home = () => {
   <section class="included" aria-label="Our promises"><div class="tick-mask"><div class="tick-track"><ul class="included-list"><li>${ico('shield')}<span>Verified organisations only</span></li><li>${ico('bank')}<span>Money goes directly to the org</span></li><li>${ico('steth')}<span>Vet estimate on every case</span></li><li>${ico('rcpt')}<span>Receipts, 80G where held</span></li><li>${ico('track')}<span>Updates until recovery</span></li><li>${ico('shield')}<span>Verified organisations only</span></li><li>${ico('bank')}<span>Money goes directly to the org</span></li><li>${ico('steth')}<span>Vet estimate on every case</span></li><li>${ico('rcpt')}<span>Receipts, 80G where held</span></li><li>${ico('track')}<span>Updates until recovery</span></li></ul><ul class="included-list" aria-hidden="true"><li>${ico('shield')}<span>Verified organisations only</span></li><li>${ico('bank')}<span>Money goes directly to the org</span></li><li>${ico('steth')}<span>Vet estimate on every case</span></li><li>${ico('rcpt')}<span>Receipts, 80G where held</span></li><li>${ico('track')}<span>Updates until recovery</span></li><li>${ico('shield')}<span>Verified organisations only</span></li><li>${ico('bank')}<span>Money goes directly to the org</span></li><li>${ico('steth')}<span>Vet estimate on every case</span></li><li>${ico('rcpt')}<span>Receipts, 80G where held</span></li><li>${ico('track')}<span>Updates until recovery</span></li></ul></div></div></section>
 
   <section class="sec-x tint" id="cases" aria-labelledby="casesT"><div class="wrap">
-    <div class="shead split"><div><p class="kicker">${ico('case')} Open cases</p><h2 id="casesT">They need you now</h2><p class="lead">Every case is posted by a verified organisation, with the vet's estimate attached. The bar moves the moment a payment goes through.</p></div><a class="btn outline" href="#/cases">See all ${S.cases.length} cases ${arrow}</a></div>
+    <div class="shead split"><div><p class="kicker">${ico('case')} Open cases</p><h2 id="casesT">They need you now</h2><p class="lead">Every case is posted by a verified organisation, with the vet's estimate attached. The bar moves the moment a payment goes through.</p></div><a class="btn pri" href="#/cases">See all ${S.cases.length} cases ${arrow}</a></div>
     <div class="cards c3">${featured.map(caseCard).join('')}</div>
   </div></section>
 
@@ -2073,7 +2109,7 @@ V.home = () => {
   </div></div></section>
 
   <section class="sec-x tint" id="transparency" aria-labelledby="trT"><div class="wrap">
-    <div class="shead split"><div><p class="kicker">${ico('rcpt')} Transparency</p><h2 id="trT">Follow every rupee</h2><p class="lead">Each case shows the vet's estimate line by line, the bills checked so far and where the animal is in treatment.</p></div><a class="btn outline" href="#/case/SMS-1042">Open Bholu's case ${arrow}</a></div>
+    <div class="shead split"><div><p class="kicker">${ico('rcpt')} Transparency</p><h2 id="trT">Follow every rupee</h2><p class="lead">Each case shows the vet's estimate line by line, the bills checked so far and where the animal is in treatment.</p></div><a class="btn pri" href="#/case/SMS-1042">Open Bholu's case ${arrow}</a></div>
     <div class="track">
       <div class="panel"><h3 class="pt">Bholu's road back</h3><p class="small muted" style="margin-top:6px">Case ${b.id} · ${esc(org(b.org).name)}</p><div class="steps">${stepsHtml(b)}</div></div>
       <div class="panel">
@@ -2088,12 +2124,13 @@ V.home = () => {
 
   <section class="sec-x" id="abc" aria-labelledby="abcT"><div class="wrap">
     <div class="abc2">
-      <div class="mapbox"><div id="mapHome" style="width:100%"></div>${legend}</div>
+      <div class="mapbox"><span class="map-hint"><span class="mh-c">Click</span><span class="mh-t">Tap</span> a ward to see its details</span><div id="mapHome" style="width:100%"></div>${legend}</div>
       <div class="abc2-side">
         <p class="kicker">${ico('vet')} ABC programme</p><h2 id="abcT">Ward by ward</h2>
         <p class="lead">How much of each ward's street dog population our partners have sterilised and vaccinated. Tap a ward to see its numbers.</p>
         <div class="chips"><span class="chip on">Faridabad</span><span class="chip off">More cities soon</span></div>
         <div class="wd" id="wdHome"></div>${sampleNote}
+        <a class="btn pri abc-more" href="#/abc">See the full ABC programme ${arrow}</a>
       </div>
     </div>
   </div></section>
@@ -2101,7 +2138,7 @@ V.home = () => {
   <section class="sec-x tint" id="ways" aria-labelledby="waysT"><div class="wrap">
     <div class="shead center"><p class="kicker">${ico('reg')} For organisations</p><h2 id="waysT">Run a rescue? Put your cases here</h2></div>
     <div class="ways">
-      <article class="way"><div class="way-m"><img src="${IMG.p3}" alt="Street dogs resting together"></div><div class="way-b"><span class="way-tag">Registration</span><h3>Verify and microfund rescue cases</h3><p>Register your organisation, post cases with the vet's estimate, upload bills and send updates. Funds go straight to your bank account. It costs nothing to list.</p><ul class="checks"><li>${ico('check')}Checked within 2 to 3 working days</li><li>${ico('check')}Your own dashboard for cases and bills</li><li>${ico('check')}No SMS fee</li></ul><a class="btn pri" href="#/register">Register your organisation ${arrow}</a></div></article>
+      <article class="way"><div class="way-m"><img src="${IMG.p3}" alt="Street dogs resting together"></div><div class="way-b"><span class="way-tag">Registration</span><h3>Verify and microfund rescue cases</h3><p>Register your organisation, post cases with the vet's estimate, upload bills and send updates. Funds go straight to your bank account. It costs nothing to list.</p><ul class="checks"><li>${ico('check')}Checked within 2 to 3 working days</li><li>${ico('check')}Your own dashboard for cases and bills</li><li>${ico('check')}No SMS fee</li></ul><a class="btn pri" href="https://wa.me/918013560733?text=Hi%20Sumit%2C%20I%20found%20Save%20My%20Stray%20and%20would%20like%20to%20know%20more%20about%20listing%20a%20rescue%20organisation." target="_blank" rel="noopener">Register your organisation ${arrow}</a></div></article>
       <article class="way alt"><div class="way-m"><img src="${IMG.p6}" alt="A community dog in a city lane"></div><div class="way-b"><span class="way-tag">ABC programme</span><h3>Show your ward-level ABC work</h3><p>Partners with AWBI project recognition can add their sterilisation and vaccination numbers ward by ward, so residents and funders can see the work.</p><ul class="checks"><li>${ico('check')}Ward map with coverage</li><li>${ico('check')}Sterilised and vaccinated counts</li><li>${ico('check')}Starting with Faridabad</li></ul><a class="btn pri" href="#/abc">See the ABC map ${arrow}</a></div></article>
     </div>
   </div></section>
@@ -2118,7 +2155,7 @@ V.home = () => {
   </div></div></section>` : ''}
 
   <section class="sec-x tint" id="partners" aria-labelledby="pT"><div class="wrap">
-    <div class="shead split"><div><p class="kicker">${ico('reg')} Partners</p><h2 id="pT">The people who do the work</h2><p class="lead">Only registered organisations can post cases. We check registration, tax status and bank details before anyone goes live.</p></div><a class="btn outline" href="#/partners">See all ${S.orgs.length} partners ${arrow}</a></div>
+    <div class="shead split"><div><p class="kicker">${ico('reg')} Partners</p><h2 id="pT">The people who do the work</h2><p class="lead">Only registered organisations can post cases. We check registration, tax status and bank details before anyone goes live.</p></div><a class="btn pri" href="#/partners">See all ${S.orgs.length} partners ${arrow}</a></div>
     <div class="partners">${S.orgs.slice(0, 3).map((o) => partnerCard(o)).join('')}</div>
   </div></section>
 
@@ -2130,7 +2167,23 @@ V.home = () => {
 let slideT;
 
 /* hero: centre the block against the widest verified banner, keep the amount card clear of the text */
-function heroBalance(slides) {
+function placeVb() {
+  const vb = $('.hf-vb'), ph = $('#hfPhoto'), vis = $('#slides'); if (!vb || !ph || !vis) return;
+  vb.style.left = vb.style.top = vb.style.right = '';
+  if (innerWidth > 640) return;
+  const p = ph.getBoundingClientRect(), v = vis.getBoundingClientRect(), b = vb.getBoundingClientRect(), W = document.documentElement.clientWidth;
+  const r = Math.min(240, p.width / 2, p.height), maxEdge = W - 8 - 0.75 * b.width;
+  let best = null;
+  for (let dy = r * 0.12; dy <= Math.max(r, p.height * 0.18); dy += 1) {
+    const e = dy >= r ? p.right : p.right - r + Math.sqrt(r * r - (r - dy) * (r - dy));
+    if (e <= maxEdge) best = { dy, e }; else break;
+  }
+  if (!best) best = { dy: r * 0.12, e: p.right - r + Math.sqrt(r * r - (r * 0.88) ** 2) };
+  vb.style.right = 'auto';
+  vb.style.left = Math.round(best.e - 0.25 * b.width - v.left) + 'px';
+  vb.style.top = Math.round(p.top + best.dy - b.height / 2 - v.top) + 'px';
+}
+function heroBalance(slides) { placeVb();
   const hin = $('.hero-in'), v = $('#hfV'), am = $('#hfA'), vis = $('#slides'), ph = $('#hfPhoto');
   if (!hin || !v || !am || !vis || !ph) return;
   hin.style.transform = ''; am.style.top = '';
@@ -2147,8 +2200,9 @@ function heroBalance(slides) {
     // amount card: drop it below the body text or buttons it would touch
     const vb = vis.getBoundingClientRect(), pr = ph.getBoundingClientRect();
     let r = am.getBoundingClientRect(); let top = r.top;
-    const gw = $('.hl-goes');
-    if (innerWidth >= 1181 && gw) { const gb = gw.getBoundingClientRect().bottom; top = (gb + pr.bottom) / 2 - r.height / 2; }
+    const ldl = $('.hero-lead'); let gb = null;
+    if (ldl) { const rr = document.createRange(); rr.selectNodeContents(ldl); const lines = []; [...rr.getClientRects()].forEach((q) => { if (q.width > 1 && !lines.some((y) => Math.abs(y - q.bottom) < 4)) lines.push(q.bottom); }); lines.sort((a, b) => a - b); gb = lines[Math.min(1, lines.length - 1)]; }
+    if (innerWidth >= 1181 && gb != null) { top = (gb + pr.bottom) / 2 - r.height / 2; }
     const rg = document.createRange(), ldE = $('.hero-lead'); if (ldE) rg.selectNodeContents(ldE);
     const obs = [...(ldE ? rg.getClientRects() : []), ...$$('.hero-actions .btn').map((e) => e.getBoundingClientRect())];
     for (let n = 0; n < 4; n++) for (const o of obs) { if (r.left < o.right + 12 && top < o.bottom + 16 && top + r.height > o.top - 16) top = o.bottom + 18; }
@@ -2277,7 +2331,7 @@ V.case = (id) => {
         <ul class="funders" style="margin-top:14px">${c.donors.length ? c.donors.slice(0, 8).map((d) => `<li><span class="fa ${d.anon ? 'anon' : ''}">${d.anon ? '?' : initials(d.n)}</span><div><b>${esc(d.n)}</b><small>${fdate(d.d)}</small></div><span class="fv num">${inr(d.a)}</span></li>`).join('') : '<li class="muted">Be the first to fund this rescue.</li>'}</ul></div>
     </div>
 
-    <section class="sec" style="padding-top:80px"><div class="sh"><div><h2 class="sec-t" style="font-size:clamp(30px,3.4vw,46px)">More animals who need help</h2></div><a class="btn ghost" href="#/cases">See all</a></div>
+    <section class="sec" style="padding-top:80px"><div class="sh"><div><h2 class="sec-t" style="font-size:clamp(30px,3.4vw,46px)">More animals who need help</h2></div><a class="btn pri" href="#/cases">See all</a></div>
       <div class="cards">${S.cases.filter((x) => x.id !== c.id && state(x) !== 'done').sort((a, b) => (a.sp === c.sp ? -1 : 1) - (b.sp === c.sp ? -1 : 1)).slice(0, 4).map(caseCard).join('')}</div></section>
   </div>`;
 };
@@ -2430,7 +2484,7 @@ V.abc = () => {
       <table class="wtable num"><thead><tr><th>Ward</th><th>Coverage</th><th>Strays</th><th>Sterilised</th><th>Vaccinated</th><th>ABC partner</th></tr></thead><tbody>
       ${rows.map((w) => { const v = wp(w), d = ABC[w]; return `<tr><td><b>Ward ${w}</b></td><td><div class="wb"><span class="dot-i" style="background:${BANDS[band(v)]}"></span><b style="width:42px">${v}%</b><div class="bar"><i style="width:${v}%;background:${BANDS[band(v)]}"></i></div></div></td><td>${d.t}</td><td>${d.s}</td><td>${d.v}</td><td>${d.org ? esc(org(d.org).name) : '<span class="muted">Looking for a partner</span>'}</td></tr>`; }).join('')}
       </tbody></table></div>
-    <div class="join"><div><h3>Run an ABC programme in your city?</h3><p>Partners with AWBI project recognition can add their ward data here, so residents and funders can see the work.</p></div><div class="acts"><a class="btn mari" href="#/register">Register your organisation</a></div></div>
+    <div class="join"><div><h3>Run an ABC programme in your city?</h3><p>Partners with AWBI project recognition can add their ward data here, so residents and funders can see the work.</p></div><div class="acts"><a class="btn mari" href="https://wa.me/918013560733?text=Hi%20Sumit%2C%20I%20found%20Save%20My%20Stray%20and%20would%20like%20to%20know%20more%20about%20listing%20a%20rescue%20organisation." target="_blank" rel="noopener">Register your organisation</a></div></div>
   </div></section>`;
 };
 V.abc.after = () => wardMap($('#mapAbc'), $('#wdAbc'));
@@ -2440,7 +2494,7 @@ let pCity = 'all';
 V.partners = () => {
   const cities = [...new Set(S.orgs.map((o) => o.city))].sort();
   return `<section class="sec" style="padding-top:44px"><div class="wrap">
-    <div class="sh"><div><span class="eyebrow">Partners</span><h1 class="page" style="margin-top:12px">Registered rescue organisations</h1><p>Every partner is checked for registration, tax status and bank details before they can post a case.</p></div><a class="btn mari" href="#/register">Register your organisation</a></div>
+    <div class="sh"><div><span class="eyebrow">Partners</span><h1 class="page" style="margin-top:12px">Registered rescue organisations</h1><p>Every partner is checked for registration, tax status and bank details before they can post a case.</p></div><a class="btn mari" href="https://wa.me/918013560733?text=Hi%20Sumit%2C%20I%20found%20Save%20My%20Stray%20and%20would%20like%20to%20know%20more%20about%20listing%20a%20rescue%20organisation." target="_blank" rel="noopener">Register your organisation</a></div>
     <div class="chips" id="pc" style="margin-bottom:34px"><button class="chip ${pCity === 'all' ? 'on' : ''}" data-c="all">All cities</button>${cities.map((c) => `<button class="chip ${pCity === c ? 'on' : ''}" data-c="${c}">${c}</button>`).join('')}</div>
     <div class="partners" id="pgrid"></div>
   </div></section>`;
@@ -2543,7 +2597,7 @@ V.org = () => {
     <div class="fld"><label for="lm">Mobile number</label><input class="inp" id="lm" value="+91 98110 4xxxx" inputmode="tel"></div>
     <div class="fld" id="otpF" style="display:none"><label for="lotp">One-time code <small>(demo code: 123456)</small></label><input class="inp" id="lotp" inputmode="numeric" maxlength="6" placeholder="6 digits"></div>
     <button class="btn dark block" id="lgo">Send code</button>
-    <p class="muted small" style="margin-top:18px;text-align:center">Not registered yet? <a href="#/register" style="font-weight:700;color:var(--ink);text-decoration:underline">Register your organisation</a></p></div></div>`;
+    <p class="muted small" style="margin-top:18px;text-align:center">Not registered yet? <a href="https://wa.me/918013560733?text=Hi%20Sumit%2C%20I%20found%20Save%20My%20Stray%20and%20would%20like%20to%20know%20more%20about%20listing%20a%20rescue%20organisation." target="_blank" rel="noopener" style="font-weight:700;color:var(--ink);text-decoration:underline">Register your organisation</a></p></div></div>`;
 };
 V.org.after = () => {
   const b = $('#lgo'); if (!b) return; let sent = false;
@@ -2808,6 +2862,6 @@ function placeKicker() { const k = $('.hero-ht .hero-kicker'), l = $('.ht-1'), h
 addEventListener('resize', placeKicker); addEventListener('hashchange', () => setTimeout(placeKicker, 30)); if (document.fonts) document.fonts.ready.then(placeKicker); setTimeout(placeKicker, 60);
 
 </script>
-<!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "ae03755faaa44a74be818bdf40f3da69"}'></script><!-- End Cloudflare Web Analytics -->
+<!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "fb93a5a8c66a4eb5af9fd648582dbbf4"}'></script><!-- End Cloudflare Web Analytics -->
 </body>
 </html>
